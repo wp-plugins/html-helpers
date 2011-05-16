@@ -4,7 +4,7 @@ Donate link: mailto:karev.n@gmail.com
 Tags: html, api, code, php, plugin, simple, template
 Requires at least: 1.5
 Tested up to: 3.1.2
-Stable tag: 0.2
+Stable tag: 0.2.1
 
 This plugin adds simple HTML tag generation API to WordPress.
 
@@ -23,6 +23,10 @@ OR
 3. Use html-helpers API in your plugins and themes.
 
 == Changelog ==
+
+= 0.2.1 =
+* Added `cycle, `reset_cycle` and `_cycle` functions to support rails-style cycles
+* Added "multiple" option support for `select` tag.
 
 = 0.2 =
 * Initial public release

@@ -96,6 +96,9 @@ if (!(function_exists('h'))){
 
 	function _select($name, $values = array(), $selected = null, $attributes = array(), 
 	$options = array()){
+		$multi = isset($attributes['multiple']) && $attributes['multiple'];
+		if ($multi)
+			$attributes['multiple'] = "multiple";
 		$res = '';
 		if (isset($options['empty']) && $options['empty']){
 			$res .= _h('option', array('value' => null), $options['empty']);
@@ -104,7 +107,9 @@ if (!(function_exists('h'))){
 			$text = $arr[0];
 			$value = $arr[1];
 			$attrs = array();
-			if ($value && $value == $selected || $text == $selected) $attrs['selected'] = 'selected';
+			if (!$multi && ($value && $value == $selected || $text == $selected) ||
+				($multi && ($value && in_array($value, $selected) || in_array($text, $selected)))) 
+				$attrs['selected'] = 'selected';
 			if ($value)
 				$attrs['value'] = $value;
 			$res .= _h("option", $attrs, $text);      
@@ -170,7 +175,7 @@ if (!(function_exists('h'))){
 	function radiobutton($name, $value = null, $checked = false, $attributes = array()){
 		echo _radiobutton($name, $value, $checked, $attributes);
 	}
-	
+
 	function _radiobutton($name, $value = null, $checked = false, $attributes = array()){
 		if ($checked)
 			$attributes['checked'] = 'checked';
@@ -184,7 +189,7 @@ if (!(function_exists('h'))){
 	function textarea($name, $value = '', $attributes = array(), $escape = true){
 		echo _textarea($name, $value, $attributes, $escape);
 	}
-	
+
 	function _textarea($name, $value, $attributes = array(), $escape = true){
 		$attributes['name'] = $name;
 		if (empty($attributes['id']))
@@ -239,6 +244,25 @@ if (!(function_exists('h'))){
 		$wp_styles->add_data($id, "conditional", $condition);
 	}
 
+	function cycle($array, $context = null){
+		echo _cycle($array, $context);
+	}
+
+	function _cycle($array, $context = null){
+		global $cycles;
+		if (!$context)
+			$context = 'default';
+		if (!isset($cycles[$context]))
+			$cycles[$context] = 0;
+		return $array[$cycles[$context]++ % count($array)];
+	}
+
+	function reset_cycle($context = 'default'){
+		global $cycles;
+		if (!$cycles) return;
+		$cycles[$context] = 0;
+	}
+
 
 	function link_or_text($title, $url, $options = array()){
 		$options['href'] = $url;
@@ -247,9 +271,9 @@ if (!(function_exists('h'))){
 		else
 			echo $title;
 	}
-	
+
 	/* Helper functions */
-	
+
 	function collection2hash($collection, $key_field, $value_field){
 		$result = array();
 		foreach($collection as $obj){
