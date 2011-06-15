@@ -24,6 +24,9 @@ OR
 
 == Changelog ==
 
+= 0.2.2 =
+* Fixed endless recursion for img function
+
 = 0.2.1 =
 * Added `cycle, `reset_cycle` and `_cycle` functions to support rails-style cycles
 * Added "multiple" option support for `select` tag.

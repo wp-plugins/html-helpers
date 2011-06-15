@@ -77,7 +77,7 @@ if (!(function_exists('h'))){
 	}
 
 	function img($src, $alt = '', $attributes = array()){
-		echo img($src, $alt, $attributes);
+		echo _img($src, $alt, $attributes);
 	}
 
 	function _link_to($text, $url = '', $attributes = array()){
