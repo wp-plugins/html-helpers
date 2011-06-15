@@ -4,7 +4,7 @@ Donate link: mailto:karev.n@gmail.com
 Tags: html, api, code, php, plugin, simple, template
 Requires at least: 1.5
 Tested up to: 3.1.2
-Stable tag: 0.2.1
+Stable tag: 0.2.2
 
 This plugin adds simple HTML tag generation API to WordPress.
 
