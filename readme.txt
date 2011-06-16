@@ -1,12 +1,28 @@
 === HTML Helpers ===
 Contributors: karevn
 Donate link: mailto:karev.n@gmail.com
-Tags: html, api, code, php, plugin, simple, template
+Tags: html, api, code, php, plugin, simple, template, generator
 Requires at least: 1.5
-Tested up to: 3.1.2
-Stable tag: 0.2.2
+Tested up to: 3.1.3
+Stable tag: 0.2.3
 
 This plugin adds simple HTML tag generation API to WordPress.
+
+== Description ==
+
+This plugin adds simple HTML tag generation API to WordPress, like these examples:
+` <?php img('wordpress'); ?>
+  <!-- Generates and prints <img src="/wp-content/<your-theme>/images/wordpress.png" alt="Wordpress" /> -->
+  <?php select('category', collection2options(get_terms('category'), 'term_id', 'name'), $term->term_id) ?>
+  <!-- Generates select tag with options taken from WP 'category' taxonomy and sets $term as selected item -->
+  <?php cycle(array('odd', 'even')); reset_cycle(); ?>
+  <!-- Rails-like "cycle" that returns "odd" on first call, "even" on second, "odd" on
+    third call, so on. reset_cycle resets the cycle. -->
+  <?php the_post_meta('meta_name') ?>
+  <!-- Shortcut for echo(get_post_meta($id, 'meta_name', true)) -->
+'
+And other simple, but useful functions - full documentation coming soon.
+
 
 == Installation ==
 
@@ -23,6 +39,11 @@ OR
 3. Use html-helpers API in your plugins and themes.
 
 == Changelog ==
+
+= 0.2.3 =
+* Removed unecessary closing tags for img, input
+* _img and img support image names without an extension
+* smarter 'alt' attribute handling for img
 
 = 0.2.2 =
 * Fixed endless recursion for img function

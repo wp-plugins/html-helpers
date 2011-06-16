@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: HTML Helpers
-Plugin URI: http://jetdog.biz/projects/wp-html-helpers
+Plugin URI: http://wordpress.org/extend/plugins/html-helpers/
 Description: Simple HTML rendering API for WordPress
-Version: 0.2
+Version: 0.2.3
 Author: Nikolay Karev
-Author URI: http://jetdog.biz/
+Author URI: http://karevn.com
 */
 
 /*
@@ -70,13 +70,18 @@ if (!(function_exists('h'))){
 	}
 
 
-	function _img($src, $alt = '', $attributes = array()){
+	function _img($src, $alt = null, $attributes = array()){
+		if ('' !== $alt && !$alt){
+			$alt = ucwords(pathinfo($src, PATHINFO_FILENAME));
+		}
 		if ($alt) $attributes['alt'] = $alt;
+		if (!pathinfo($src, PATHINFO_EXTENSION))
+			$src .= ".png";
 		$attributes['src'] = preg_match('/\//', $src) ? $src : get_bloginfo('template_url') . "/images/$src";
-		return _h('img', $attributes);
+		return _h('img', $attributes, null, false);
 	}
 
-	function img($src, $alt = '', $attributes = array()){
+	function img($src, $alt = null, $attributes = array()){
 		echo _img($src, $alt, $attributes);
 	}
 
@@ -131,7 +136,7 @@ if (!(function_exists('h'))){
 		$attributes['type'] = 'text';
 		if (empty($attributes['id']))
 			$attributes['id'] = sanitize_title_with_dashes($attributes['name']);
-		return _h('input', $attributes);
+		return _h('input', $attributes, null, false);
 	}
 
 	function password_field($name, $value = null, $attributes = array()){
@@ -144,7 +149,7 @@ if (!(function_exists('h'))){
 		$attributes['type'] = 'password';
 		if (empty($attributes['id']))
 			$attributes['id'] = sanitize_title_with_dashes($attributes['name']);
-		return _h('input', $attributes);
+		return _h('input', $attributes, null, false);
 	}
 
 	function hidden_field($name, $value = null, $attributes = array()){
@@ -155,7 +160,7 @@ if (!(function_exists('h'))){
 		$attributes['value'] = $value;
 		$attributes['name'] = $name;
 		$attributes['type'] = 'hidden';
-		return _h('input', $attributes);
+		return _h('input', $attributes, null, false);
 	}
 
 	function checkbox($name, $value = null, $checked = false, $attributes = array()){
@@ -169,7 +174,7 @@ if (!(function_exists('h'))){
 		$attributes = array_merge($attributes, array('name' => $name, 'value' => $value));
 		if (empty($attributes['id']))
 			$attributes['id'] = sanitize_title_with_dashes($attributes['name']);
-		return _h('input', $attributes);
+		return _h('input', $attributes, null, false);
 	}
 
 	function radiobutton($name, $value = null, $checked = false, $attributes = array()){
