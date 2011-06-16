@@ -3,7 +3,7 @@
 Plugin Name: HTML Helpers
 Plugin URI: http://jetdog.biz/projects/wp-html-helpers
 Description: Simple HTML rendering API for WordPress
-Version: 0.2
+Version: 0.2.1
 Author: Nikolay Karev
 Author URI: http://jetdog.biz/
 */
