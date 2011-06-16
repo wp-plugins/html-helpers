@@ -11,17 +11,14 @@ This plugin adds simple HTML tag generation API to WordPress.
 == Description ==
 
 This plugin adds simple HTML tag generation API to WordPress, like these examples:
-` <?php img('wordpress'); ?>
-  <!-- Generates and prints <img src="/wp-content/<your-theme>/images/wordpress.png" alt="Wordpress" /> -->
-  <?php select('category', collection2options(get_terms('category'), 'term_id', 'name'), $term->term_id) ?>
-  <!-- Generates select tag with options taken from WP 'category' taxonomy and sets $term as selected item -->
-  <?php cycle(array('odd', 'even')); reset_cycle(); ?>
-  <!-- Rails-like "cycle" that returns "odd" on first call, "even" on second, "odd" on
-    third call, so on. reset_cycle resets the cycle. -->
-  <?php the_post_meta('meta_name') ?>
-  <!-- Shortcut for echo(get_post_meta($id, 'meta_name', true)) -->
-'
-And other simple, but useful functions - full documentation coming soon.
+`<?php img('wordpress'); ?>` generates and prints <img src="/wp-content/<your-theme>/images/wordpress.png" alt="Wordpress" 
+`<?php select('category', collection2options(get_terms('category'), 'term_id', 'name'), $term->term_id) ?>` generates select tag with options taken from WP 'category' taxonomy and sets $term as selected item
+`<?php cycle(array('odd', 'even')); reset_cycle(); ?>` rails-like "cycle" that returns "odd" on first call, "even" on second, "odd" on
+    third call, so on. reset_cycle resets the cycle.
+`<?php the_post_meta('meta_name') ?>` shortcut for echo(get_post_meta($id, 'meta_name', true))
+
+Form field generators for `text`, `checkbox`, `hidden` input types, `textarea`, and more tags. More docs coming soon, you can read the code to figure out other features for now.
+
 
 
 == Installation ==
