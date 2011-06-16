@@ -11,7 +11,8 @@ This plugin adds simple HTML tag generation API to WordPress.
 == Description ==
 
 This plugin adds simple HTML tag generation API to WordPress, like these examples:
-`<?php img('wordpress'); ?>` generates and prints <img src="/wp-content/<your-theme>/images/wordpress.png" alt="Wordpress" 
+`<?php img('wordpress'); ?>` generates and prints `<img src="/wp-content/<your-theme>/images/wordpress.png" alt="Wordpress" />`.
+`<?php _img('http://example.com/images/wordpress.png', 'alt', array('id' => 'my-image')) ?>` generates and returns almost the same tag, just with absolute url, id and alt attributes set manually.
 `<?php select('category', collection2options(get_terms('category'), 'term_id', 'name'), $term->term_id) ?>` generates select tag with options taken from WP 'category' taxonomy and sets $term as selected item
 `<?php cycle(array('odd', 'even')); reset_cycle(); ?>` rails-like "cycle" that returns "odd" on first call, "even" on second, "odd" on
     third call, so on. reset_cycle resets the cycle.
